@@ -70,7 +70,9 @@ public class Rato {
 	public void setResultados(List<Resultado> resultados) {
 		Resultados = resultados;
 	}
-
+	public void addResultado (Resultado resultado) {
+		Resultados.add(resultado);
+	}
 
 	
 

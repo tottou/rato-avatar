@@ -13,7 +13,9 @@ import br.iesb.tottou.engine.brain.Cerebro;
 import br.iesb.tottou.engine.brain.Controle;
 import br.iesb.tottou.engine.brain.Interpretador;
 import br.iesb.tottou.engine.time.Frequencia;
+import br.iesb.tottou.engine.time.Frequenciador;
 import br.iesb.tottou.model.Experimento;
+import br.iesb.tottou.model.Resultado;
 
 public class CaixaDeSkinner extends HttpServlet {
 	
@@ -24,6 +26,7 @@ public class CaixaDeSkinner extends HttpServlet {
 	Experimento experimento = new Experimento();
 	Frequencia frequencia = new Frequencia();
 	Interpretador interpretador = new Interpretador();
+	Resultado resultado = new Resultado();
 
 	
 	public CaixaDeSkinner () {
@@ -65,7 +68,9 @@ public class CaixaDeSkinner extends HttpServlet {
 		//experimento.setUltimaTipoRespostaReforcada(experimento.getTipoRespostaReforcada()); //salva ultimo valor da ultima ação
 		int tipo = qualTipoComportamento(); // verifica qual chance da ação acionar
 		experimento.setTipoRespostaReforcada(tipo); //seta o tipo no experimento
-		String respostaFrase = interpretador.interpretar(tipo, qualInterpretar(tipo)); //imprimir isso	
+		Double level = qualInterpretar(tipo);
+		String respostaFrase = interpretador.interpretar(tipo, level); //imprimir isso	
+		Frequenciador.add(resultado, tipo, level);
 		
 		return respostaFrase; //verificando
 		

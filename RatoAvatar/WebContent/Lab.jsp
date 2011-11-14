@@ -88,18 +88,19 @@ function validarNulo (form){
 		<div id="content">
 			<h2>Laboratório</h2>
 
-			Ratos: <br/><br/>
+			<h3>Ratos:</h3> <br/><br/>
 			<form name="form1" method="post" action="Experimentos.jsp">
 					
 					<%
 					List<String> lista = Lab.ratosALuno( session.getAttribute("loginUsuario").toString());
-					if (lista !=null) {						
+										
 				
 					for (String nomeRato : lista) {						
 						
-						out.println("<input type='radio' name='ratos'  value='"+nomeRato+"'>"+nomeRato+"<br />");	
+						out.println("<input type='radio' name='ratos'  value='"+nomeRato+"'><b>"+nomeRato+"</b><br />");	
 						
 					}
+					if (lista.size()>0) {	
 					out.println("<br /><br /><input type='submit' name='Submit' value='Acessar'> <br/><br/>");
 					}
 					

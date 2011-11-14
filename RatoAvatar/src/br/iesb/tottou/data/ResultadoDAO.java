@@ -29,9 +29,12 @@ public class ResultadoDAO {
 		Transaction t = sessao.beginTransaction();
 		Aluno aluno = AlunoDAO.buscarAluno(login);
 
-		for (Rato rato : aluno.getRatos()) {
-		lista.add(rato.getNome());
-
+		for (Rato rato : aluno.getRatos()) {		
+		if (rato.getNome().equals(nomeRato)) {
+			for (Resultado resultado : rato.getResultados()) {
+				lista.add(resultado.getNome());
+			}
+		  }
 		}
 
 		t.commit();

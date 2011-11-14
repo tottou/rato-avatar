@@ -20,6 +20,15 @@ public class RatoDAO {
 		t.commit();
 		sessao.close();
 	}
+	
+	public static void atualizarRato(Rato rato) {
+
+		Session sessao = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = sessao.beginTransaction();
+		sessao.update(rato); 
+		t.commit();
+		sessao.close();
+	}
 
 
 	
