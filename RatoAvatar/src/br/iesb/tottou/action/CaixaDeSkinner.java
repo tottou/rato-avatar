@@ -47,6 +47,7 @@ public class CaixaDeSkinner extends HttpServlet {
 		List<Rato> ratos = aluno.getRatos();
 		for (Rato rat : ratos) {
 			if (rat.getNome().equals(nomeRato)) {
+				rat.getResultados(); // inicializar
 				rat.addResultado(resultado);
 				rat.setLimite1(frequencia.getLimite1());
 				rat.setLimite2(frequencia.getLimite2());
@@ -60,7 +61,7 @@ public class CaixaDeSkinner extends HttpServlet {
 	
 	 protected void doGet(HttpServletRequest request,
 	            HttpServletResponse response) throws ServletException, IOException {
-		if (request.getParameter("ninja").equals("salvar")) {
+		if ("salvar".equals(request.getParameter("ninja"))) {
 			String nomeAluno = request.getSession().getAttribute("loginUsuario").toString();
 			String nomeRato = request.getSession().getAttribute("ratoAvatar").toString();
 			String nomeExperimento = request.getSession().getAttribute("nomeExperimento").toString(); 

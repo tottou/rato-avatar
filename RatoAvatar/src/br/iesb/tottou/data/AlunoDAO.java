@@ -86,7 +86,9 @@ public class AlunoDAO {
 			if (aluno.getLogin().equals(login))
 					 {
 				t.commit();
+				aluno.inicializar();
 				sessao.close();
+				
 				return aluno;
 
 			}

@@ -46,7 +46,7 @@ public class Rato {
 	
 	
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name="rato_fk")
 	private List<Resultado> Resultados = new ArrayList<Resultado>();
 	
@@ -118,6 +118,13 @@ public class Rato {
 
 	public void setLimite4(int limite4) {
 		Limite4 = limite4;
+	}
+
+	public void inicializar() {
+		for (Resultado resultado : getResultados()) {
+			
+		}
+		
 	}
 
 	

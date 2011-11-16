@@ -25,6 +25,9 @@ public class Resultado {
 	private Rato rato;
 	
 	@Column
+	private  int reforcos;
+	
+	@Column
 	private  int umUm;
 	@Column
 	private  int umDois; 
@@ -206,6 +209,12 @@ public class Resultado {
 	}
 	public void setRato(Rato rato) {
 		this.rato = rato;
+	}
+	public void setReforcos(int reforcos) {
+		this.reforcos = reforcos;
+	}
+	public int getReforcos() {
+		return reforcos;
 	}
 	
 	

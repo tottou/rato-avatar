@@ -102,38 +102,24 @@ function validarNulo (form){
 			
 			
 			%>
-			<h2>Experimentos do Rato Avatar <% out.println(rato); %> </h2>
+			<h2>Resultados do Rato Avatar <% out.println(rato); %> </h2>
 
-			<form name="form1" method="get" action="/Grafico">
-							<%
-					List<String> lista = Lab.resultadosRatos( session.getAttribute("loginUsuario").toString(), session.getAttribute("ratoAvatar").toString());
-										
-				
-					for (String nomeExp : lista) {						
-						
-						out.println("<input type='radio' name='ratos'  value='"+nomeExp+"'><b>"+nomeExp+"</b><br />");	
-						
-					}
-					if (lista.size()>0) {	
-					out.println("<br /><br /><input type='submit' name='Submit' value='Acessar'> <br/><br/>");
-					}
-					
-					
-					
-					%>
-					</form>
-				
-					Para iniciar um novo experimento, forneça o Título e clique no botão para acessar a Caixa de Skinner. <br/>
-					
-					<form name="CaixaSkinner" method="post" action="SkinnerBox.jsp" onsubmit="return validarNulo(this);">
-					
-					Título do experimento: <input name="experimento" type="text" id="experimento"size="50">
-					<input type="submit" name="Submit" value="Iniciar Experimento">
+		
 					
 					
 					
 					
-					</form>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					
 					
 					

@@ -88,5 +88,11 @@ public class Aluno {
 	public void addRato (Rato rato) {
 		Ratos.add(rato);
 	}
+	public void inicializar() {
+	for (Rato rato : Ratos) {
+		rato.inicializar();
+	}
+		
+	}
 
 }

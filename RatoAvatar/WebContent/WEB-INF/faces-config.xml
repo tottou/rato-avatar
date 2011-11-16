@@ -20,5 +20,9 @@
 		<managed-bean-class>br.iesb.tottou.action.CaixaDeSkinner</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-
+	<managed-bean>
+		<managed-bean-name>grafico</managed-bean-name>
+		<managed-bean-class>br.iesb.tottou.action.chat.Grafico</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 </faces-config>

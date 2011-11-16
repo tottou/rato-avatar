@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.iesb.tottou.data.AlunoDAO;
 import br.iesb.tottou.data.RatoDAO;
+import br.iesb.tottou.data.ResultadoDAO;
 import br.iesb.tottou.engine.time.Frequencia;
 import br.iesb.tottou.model.Aluno;
 import br.iesb.tottou.model.Rato;
@@ -49,6 +50,12 @@ public class Lab {
 	
 	public static List<String> ratosALuno (String login) {
 		List<String> lista = RatoDAO.recuperaRatos(login);		
+		return lista;
+		
+	}
+	
+	public static List<String> resultadosRatos (String login, String rato) {
+		List<String> lista = ResultadoDAO.recuperaExperimentos(login, rato);		
 		return lista;
 		
 	}

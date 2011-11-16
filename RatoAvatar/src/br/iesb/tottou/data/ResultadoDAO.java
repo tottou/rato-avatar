@@ -42,5 +42,27 @@ public class ResultadoDAO {
 		return lista;
 
 	}
+	
+	public static Resultado recuperaResultado(String login, String nomeRato, String nomeExp) {		
+		Session sessao = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = sessao.beginTransaction();
+		Aluno aluno = AlunoDAO.buscarAluno(login);
+		Resultado returnResultado = new Resultado();
+		for (Rato rato : aluno.getRatos()) {		
+		if (rato.getNome().equals(nomeRato)) {
+			for (Resultado resultado : rato.getResultados()) {
+				if (resultado.getNome().equals(nomeExp)) {
+					returnResultado = resultado;
+				}
+				
+				
+			}
+		  }
+		}
+
+		t.commit();
+		sessao.close();
+		return returnResultado;
+	}
 
 }

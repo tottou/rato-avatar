@@ -23,6 +23,14 @@
 		<servlet-name>CaixaDeSkinner</servlet-name>
 		<url-pattern>/CaixaDeSkinner</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>Grafico</servlet-name>
+		<servlet-class>br.iesb.tottou.action.chart.Grafico</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Grafico</servlet-name>
+		<url-pattern>/Grafico</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
