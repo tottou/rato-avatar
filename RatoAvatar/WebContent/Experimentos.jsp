@@ -52,6 +52,14 @@ function validarNulo (form){
 		document.getElementById("criar").style.visibility = 'visible';
 		
 			}
+	
+	function validarNulo (form){
+		if (form.experimento.value=="") {
+			alert("O campo do título do experimento é obrigatório.");
+			form.nome.focus();
+			return false;
+			}
+	}
 
 </script>
 </head>
@@ -76,12 +84,11 @@ function validarNulo (form){
 				</li>
 				<li><a href="Lab.jsp">Laboratório</a>
 				</li>				
-				<li><a href="#">Configurações</a>
+				<li onclick="window.open('Config.jsp','Ajuda','width=600,height=400,scrollbars=1')"><a href="#">Configurações</a>
 				</li>
-				<li><a href="#">Ajuda</a>
-				</li>
-				
-				<li><a href="#">Sobre</a>
+				<li onclick="window.open('Ajuda.jsp','Ajuda','width=600,height=400,scrollbars=1')"><a href="#">Ajuda</a>
+				</li>				
+				<li onclick="window.open('Sobre.jsp','Ajuda','width=600,height=400,scrollbars=1')"><a href="#">Sobre</a>
 				</li>
 				<li><a href="Logoff.jsp">Logoff</a>
 				</li>
@@ -89,25 +96,38 @@ function validarNulo (form){
 			</ul>
 		</div>		
 		<div id="content">
+			<% if (session.getAttribute("ratoAvatar") != null) {
+				
+			
+			
+			
+			%>
 			<h2>Experimentos do Rato Avatar <% out.println(rato); %> </h2>
 
 			
 					
 					
 				
+					Para iniciar um novo experimento, forneça o Título e clique no botão para acessar a Caixa de Skinner. <br/>
+					
+					<form name="CaixaSkinner" method="post" action="SkinnerBox.jsp" onsubmit="return validarNulo(this);">
+					
+					Título do experimento: <input name="experimento" type="text" id="experimento"size="50">
+					<input type="submit" name="Submit" value="Iniciar Experimento">
 					
 					
 					
 					
-					<br/><input type="button" value="Caixa de Skinner" onclick="document.location.href='SkinnerBox.jsp'" />
+					</form>
 					
 					
 					
+					<%
+						} else {
+							out.println("Você não selecionou um Rato Avatar adequadamente. Clique <a href='Lab.jsp'><b>aqui</b></a> para voltar.");
+						}
 					
-					
-					
-					
-					
+					%>
 					
 					
 					

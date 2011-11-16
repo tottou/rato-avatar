@@ -56,10 +56,11 @@ input {
  %>
 				</a></li>
 				<li><a href="Lab.jsp">Laboratório</a></li>
-				<li><a href="#">Configurações</a></li>
-				<li><a href="#">Ajuda</a></li>
-
-				<li><a href="#">Sobre</a></li>
+				<li onclick="window.open('Config.jsp','Ajuda','width=600,height=400,scrollbars=1')"><a href="#">Configurações</a></li>
+				<li onclick="window.open('Ajuda.jsp','Ajuda','width=600,height=400,scrollbars=1')"><a href="#">Ajuda</a>
+				</li>				
+				<li onclick="window.open('Sobre.jsp','Ajuda','width=600,height=400,scrollbars=1')"><a href="#">Sobre</a>
+				</li>
 				<li><a href="Logoff.jsp">Logoff</a></li>
 
 			</ul>

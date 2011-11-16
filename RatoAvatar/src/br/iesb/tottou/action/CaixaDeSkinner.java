@@ -2,6 +2,7 @@ package br.iesb.tottou.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -9,12 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.iesb.tottou.data.AlunoDAO;
+import br.iesb.tottou.data.RatoDAO;
 import br.iesb.tottou.engine.brain.Cerebro;
 import br.iesb.tottou.engine.brain.Controle;
 import br.iesb.tottou.engine.brain.Interpretador;
 import br.iesb.tottou.engine.time.Frequencia;
 import br.iesb.tottou.engine.time.Frequenciador;
+import br.iesb.tottou.model.Aluno;
 import br.iesb.tottou.model.Experimento;
+import br.iesb.tottou.model.Rato;
 import br.iesb.tottou.model.Resultado;
 
 public class CaixaDeSkinner extends HttpServlet {
@@ -33,14 +38,43 @@ public class CaixaDeSkinner extends HttpServlet {
 		super();
 	}
 	
+	
+	protected void salvarResultado(String nomeAluno, String nomeRato, String nomeExperimento)  {		
+	
+		resultado.setNome(nomeExperimento);
+		Aluno aluno = new Aluno();		
+		aluno = AlunoDAO.buscarAluno(nomeAluno);
+		List<Rato> ratos = aluno.getRatos();
+		for (Rato rat : ratos) {
+			if (rat.getNome().equals(nomeRato)) {
+				rat.addResultado(resultado);
+				rat.setLimite1(frequencia.getLimite1());
+				rat.setLimite2(frequencia.getLimite2());
+				rat.setLimite3(frequencia.getLimite3());
+				rat.setLimite4(frequencia.getLimite4());				
+				RatoDAO.atualizarRato(rat);
+			}
+		}
+		
+	}
+	
 	 protected void doGet(HttpServletRequest request,
 	            HttpServletResponse response) throws ServletException, IOException {
+		if (request.getParameter("ninja").equals("salvar")) {
+			String nomeAluno = request.getSession().getAttribute("loginUsuario").toString();
+			String nomeRato = request.getSession().getAttribute("ratoAvatar").toString();
+			String nomeExperimento = request.getSession().getAttribute("nomeExperimento").toString(); 
+			salvarResultado(nomeAluno, nomeRato, nomeExperimento);
+			
+		}
+		else {
 		 experimento.setAgua(true);
 		 response.setContentType("text/plain");
 	        PrintWriter out = response.getWriter();
 	        out.println("Sistema de reforço ativado no bebedouro.");
 	        out.flush();
 	        out.close();
+		}
 		 
 	    }
 	
@@ -65,15 +99,23 @@ public class CaixaDeSkinner extends HttpServlet {
 		} else {
 		iterar(); //continua treino e/ou setar novos valores
 		
-		//experimento.setUltimaTipoRespostaReforcada(experimento.getTipoRespostaReforcada()); //salva ultimo valor da ultima ação
+		experimento.setUltimaTipoRespostaReforcada(experimento.getTipoRespostaReforcada()); //salva ultimo valor da ultima ação
 		int tipo = qualTipoComportamento(); // verifica qual chance da ação acionar
 		experimento.setTipoRespostaReforcada(tipo); //seta o tipo no experimento
 		Double level = qualInterpretar(tipo);
 		String respostaFrase = interpretador.interpretar(tipo, level); //imprimir isso	
 		Frequenciador.add(resultado, tipo, level);
 		
-		return respostaFrase; //verificando
-		
+		//
+	System.out.println(respostaFrase);
+		System.out.println(resultado.getUmDois());
+		System.out.println(frequencia.getLimite1());
+		System.out.println(frequencia.getLimite2());
+		System.out.println(frequencia.getLimite3());
+		System.out.println(frequencia.getLimite4());
+		System.out.println("---------");
+		//
+		return respostaFrase; 
 		}
 		
 		
@@ -82,6 +124,7 @@ public class CaixaDeSkinner extends HttpServlet {
 	public boolean verificaAgua () { //verificar depois na camada de apresenta pra imprimir "bebeu água no bebedouro" e etc
 		if (experimento.isAgua()) {
 			experimento.setSeAgua(1); //rato tem conhecimento do reforço
+			iterar();
 			experimento.setAgua(false);
 			return true;
 		} else
@@ -224,6 +267,8 @@ public class CaixaDeSkinner extends HttpServlet {
 		experimento.setRespostaRato(saidaC);
 
 	}
+	
+	
 
 
 

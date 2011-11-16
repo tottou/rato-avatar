@@ -27,10 +27,24 @@ public class Rato {
 	@ManyToOne
 	@JoinColumn(name="aluno_fk")
 	private Aluno aluno;
-
 	
+		
 	@Column(name="NOME", nullable=false)
 	private String Nome;
+	
+	@Column
+	private int Limite1=0;
+	
+	@Column
+	private int Limite2=1;
+	
+	@Column
+	private int Limite3=2;
+	
+	@Column
+	private int Limite4=3;
+	
+	
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="rato_fk")
@@ -72,6 +86,38 @@ public class Rato {
 	}
 	public void addResultado (Resultado resultado) {
 		Resultados.add(resultado);
+	}
+
+	public int getLimite1() {
+		return Limite1;
+	}
+
+	public void setLimite1(int limite1) {
+		Limite1 = limite1;
+	}
+
+	public int getLimite2() {
+		return Limite2;
+	}
+
+	public void setLimite2(int limite2) {
+		Limite2 = limite2;
+	}
+
+	public int getLimite3() {
+		return Limite3;
+	}
+
+	public void setLimite3(int limite3) {
+		Limite3 = limite3;
+	}
+
+	public int getLimite4() {
+		return Limite4;
+	}
+
+	public void setLimite4(int limite4) {
+		Limite4 = limite4;
 	}
 
 	

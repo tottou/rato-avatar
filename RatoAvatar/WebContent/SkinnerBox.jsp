@@ -113,12 +113,29 @@ input {
 				});
 
 			}
+			
+			function salvar () {
+				
+				if (confirm("Deseja realmente salvar o experimento? \n(O experimento será encerrado.))")) {
+					
+					$.get("CaixaDeSkinner", {ninja:"salvar"}, function(data) {
+						$("#msg").html(data);
+					});
+					window.open('Salvar.jsp','Cadastro','width=600,height=400');
+					 
+					} else {						
+					return false;
+					} 
+				
+			}
 		</script>
 		<div id="container">
 			<div id="header">
 				<h1>Rato Avatar</h1>
 			</div>
 			<%
+			String nomeExpermento = request.getParameter("experimento"); 
+			session.setAttribute("nomeExperimento", nomeExpermento);
 				//Verifica se está logado
 					if (session.getAttribute("loginUsuario") != null
 							|| session.getAttribute("senhaUsuario") != null) {
@@ -131,9 +148,11 @@ input {
  %>
 					</a></li>
 					<li><a href="Lab.jsp">Laboratório</a></li>
-					<li><a href="#">Configurações</a></li>
-					<li><a href="#">Ajuda</a></li>
-					<li><a href="#">Sobre</a></li>
+					<li onclick="window.open('Config.jsp','Ajuda','width=600,height=400,scrollbars=1')"><a href="#">Configurações</a></li>
+					<li onclick="window.open('Ajuda.jsp','Ajuda','width=600,height=400,scrollbars=1')"><a href="#">Ajuda</a>
+				</li>				
+				<li onclick="window.open('Sobre.jsp','Ajuda','width=600,height=400,scrollbars=1')"><a href="#">Sobre</a>
+				</li>
 					<li><a href="Logoff.jsp">Logoff</a></li>
 
 				</ul>
@@ -143,38 +162,37 @@ input {
 				<H3>Rato Avatar <% out.println(session.getAttribute("ratoAvatar")); %></H3>
 
 				<center>
-					<div id="caixa">
+				<form id="controle" name="Salvar" method="post" action="Lab.jsp">
+					<div id="caixa" >
 						<br />
-						<table border="0" width="45%" align="center">
+						<table border="0" width="30%" align="center">
 							<tr>
 								<td></td>
-								<td><img src="/RatoAvatar/imagens/play.png">
+								<td>
+								<input id="play" type="image" onclick="playx();return false" title="Iniciar ou continuar a simulação" src="/RatoAvatar/imagens/play.png" width="22px"
+									height="22px" ></input>
+								</td>	
+								<td><input id="pause" type="image" value="Pause" onclick="pausex();return false" title="Pausar a simulação" src="/RatoAvatar/imagens/pause.png" width="22px"
+									height="22px" ></input>
+								</td>								
+								<td><input id="ref" type="image" value="Reforco" onclick="reforco();return false" title="Ativar o reforço na Caixa de Skinner" src="/RatoAvatar/imagens/agua.png" width="22px"
+									height="22px" ></input>
 								</td>
-								<td><img src="/RatoAvatar/imagens/forward.png">
-								</td>
-								<td><img src="/RatoAvatar/imagens/agua.png" width="22px"
-									height="22px">
-								</td>
-								<td><img src="/RatoAvatar/imagens/luz.gif" width="22px"
-									height="22px">
-								</td>
-								<td><img src="/RatoAvatar/imagens/af.gif" width="22px"
-									height="22px">
-								</td>
+								<td><input id="save" type="image" value="Salvar" onclick="return salvar();"
+								 title="Salvar resultados e sair do experimento" src="/RatoAvatar/imagens/save.png" width="22px" height="22px" ></input>
+								</td>							
+								
 							</tr>
 						</table>
 					</div>
+			</form>
+
+				<br/>	<br/>	<br/>
 
 
 
-
-
-
-					<form>
-						<input id="ref" type="button" value="Reforco" onclick="reforco();"></input>
-						<input id="play" type="button" value="play" onclick="playx();"></input>
-						<input id="pause" type="button" value="pause" onclick="pausex();"></input>
-
+					<form>				
+					
 
 						<div id="model" style="display: none;">
 

@@ -29,7 +29,8 @@ input {
 	
 		<div id="content">			
 			<center>
-				<img src="/RatoAvatar/imagens/ratoAvatarz.jpg"> <br /> <br />
+				<img src="/RatoAvatar/imagens/ratoAvatarz.jpg" title="Line art by Craig Swanson \n 
+				Final Art by Roberta Maria \n Rato Avatar by Arthur Heleno"> <br /> <br />
 				
 				<br />Para conectar-se no sistema informe seu login e senha:
 			</center>
@@ -54,9 +55,9 @@ input {
 						<td colspan="2"><div align="center">
 								<input type="submit" name="Submit" value="Login"> <input
 									type="button" name="cadastrar" value="Cadastrar"
-									onclick="window.open('Cadastro.jsp','foto1','width=600,height=400')">
+									onclick="window.open('Cadastro.jsp','Cadastro','width=600,height=400')">
 								<input type="button" name="ajuda" value="Ajuda"
-									onclick="window.open('Ajuda.jsp','foto1','width=600,height=400')">
+									onclick="window.open('Ajuda.jsp','Ajuda','width=600,height=400,scrollbars=1')">
 							</div>
 						</td>
 					</tr>
