@@ -7,6 +7,10 @@
 	<welcome-file-list>
 		<welcome-file>Index.jsp</welcome-file>
 	</welcome-file-list>
+		<error-page>
+        <error-code>500</error-code>
+        <location>/Erro.jsp</location>
+    </error-page>
 	<servlet>
 		<servlet-name>logar</servlet-name>
 		<jsp-file>/Logar.jsp</jsp-file>
