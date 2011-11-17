@@ -79,7 +79,8 @@ input {
 						
 						Lab.criarRato(nomeAluno, nomeRato);
 						out.println("Rato Avatar "+nomeRato+" criado com sucesso. <br/>");
-						out.println("<br/>Todos Ratos Avatar novos estão bem cuidados, alimentados com ração desidratada, e 48 horas com privação de água. (Colocar mais info. aqui) <br/>");				
+						out.println("<br/>Todos Ratos Avatar novos estão bem cuidados, alimentados com ração desidratada, e 48 horas de privação de água. "
+								+"Essa operação tornará bastante provável que tudo que o Rato Avatar fizer que produza água em seu ambiente volte a ser feito novamente. <br/><br/><br/><br/><br/> Clique <a href='Lab.jsp'><b>aqui</b></a> para voltar.");				
 
 					}
 					else

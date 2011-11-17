@@ -58,6 +58,9 @@ input {
 			var segs = 0;
 
 			function playx() {
+				document.getElementById("inicio").style.visibility = 'hidden';
+				document.getElementById("playDiv").style.visibility = 'visible';
+				document.getElementById("pauseDiv").style.visibility = 'hidden';
 				pause = false;
 				var aleatorio = ((Math.random() * 6000) + 2000);
 				setTimeout(duplicarDiv, aleatorio);
@@ -68,7 +71,9 @@ input {
 			}
 
 			function pausex() {
-
+				document.getElementById("inicio").style.visibility = 'hidden';
+				document.getElementById("playDiv").style.visibility = 'hidden';
+				document.getElementById("pauseDiv").style.visibility = 'visible';
 				pause = true;
 			}
 
@@ -102,7 +107,8 @@ input {
 
 				$.get("CaixaDeSkinner", function(data) {
 					$("#msg").html(data);
-				});
+				});			
+			
 				
 			}
 
@@ -116,7 +122,7 @@ input {
 			
 			function salvar () {
 				
-				if (confirm("Deseja realmente salvar o experimento? \n(O experimento será encerrado.))")) {
+				if (confirm("Deseja realmente salvar o experimento? \n(O experimento será encerrado)")) {
 					
 					$.get("CaixaDeSkinner", {ninja:"salvar"}, function(data) {
 						$("#msg").html(data);
@@ -128,6 +134,14 @@ input {
 					} 
 				
 			}
+			
+			function mostrarCriando (){
+				
+				document.getElementById("inicio").style.visibility = 'hidden';
+				document.getElementById("playDiv").style.visibility = 'visible';
+				document.getElementById("pauseDiv").style.visibility = 'hidden';
+				
+					}
 		</script>
 		<div id="container">
 			<div id="header">
@@ -161,7 +175,15 @@ input {
 				<h2>Caixa de Skinner</h2>
 				<H3>Rato Avatar <% out.println(session.getAttribute("ratoAvatar")); %></H3>
 
+
+			
 				<center>
+				<div id="inicio"  style="background: gray;" ><font  color="white">Pressione o botão PLAY para iniciar a simulação</font></div>
+				<div id="playDiv" style="visibility: hidden; " ><div id="insidePlay" style="background: gray;" ><font color="white">Simulação em andamento...</font></div> </div>
+				<div id="pauseDiv" style="visibility: hidden; "><div id="insidePause" style="background: gray;" ><font color="white">Simulação pausada. </font></div></div>
+				
+				
+				
 				<form id="controle" name="Salvar" method="post" action="Lab.jsp">
 					<div id="caixa" >
 						<br />

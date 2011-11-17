@@ -87,7 +87,7 @@ function validarNulo (form){
 		<div id="content">
 			<h2>Laboratório</h2>
 
-			<h3>Ratos:</h3> <br/><br/>
+			<h3>Ratos:</h3> <br/>
 			<form name="form1" method="post" action="Experimentos.jsp">
 					
 					<%
@@ -132,7 +132,7 @@ function validarNulo (form){
 					
 					
 					
-					<br/><input type="button" value="Caixa de Skinner" onclick="document.location.href='SkinnerBox.jsp'" />
+					<br/>
 					
 					
 					

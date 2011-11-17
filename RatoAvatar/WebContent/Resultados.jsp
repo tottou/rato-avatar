@@ -1,4 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@ page contentType="text/html; charset=ISO-8859-1" %>
 <%@page import="br.iesb.tottou.action.Lab"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
@@ -7,7 +8,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/RatoAvatar/css/ra.css">
-<title>Rato Avatar - Laboratório</title>
+<title>Rato Avatar - Resultados</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <style>
 body,td,a:link,a:visited {
@@ -71,8 +72,8 @@ function validarNulo (form){
 		</div>
 		
 		<%
-		String rato = request.getParameter("ratos");
-		session.setAttribute("ratoAvatar", rato);
+		String result = request.getParameter("resultados");
+	
 				//Verifica se está logado
 				if (session.getAttribute("loginUsuario") != null 
 						|| session.getAttribute("senhaUsuario") != null) {
@@ -102,13 +103,15 @@ function validarNulo (form){
 			
 			
 			%>
-			<h2>Resultados do Rato Avatar <% out.println(rato); %> </h2>
+			<h2>Resultados do Rato Avatar <% out.println (session.getAttribute("ratoAvatar")); %> </h2>
+			<h2>Resultado <%out.println (result); %> </h2>
 
 		
 					
 					
 					
 					
+					<img src="/RatoAvatar/charts/chart<%out.println(""+session.getAttribute("loginUsuario")+session.getAttribute("ratoAvatar")+result);%>.png" >
 					
 					
 					

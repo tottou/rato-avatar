@@ -29,8 +29,8 @@ input {
 	
 		<div id="content">			
 			<center>
-				<img src="/RatoAvatar/imagens/ratoAvatarz.jpg" title="Line art by Craig Swanson \n 
-				Final Art by Roberta Maria \n Rato Avatar by Arthur Heleno"> <br /> <br />
+				<img src="/RatoAvatar/imagens/ratoAvatarz.jpg" title="Line art by Craig Swanson -
+				Final Art by Roberta Maria - Rato Avatar by Arthur Heleno"> <br /> <br />
 				
 				<br />Para conectar-se no sistema informe seu login e senha:
 			</center>

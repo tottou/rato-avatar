@@ -36,7 +36,7 @@ public class Grafico extends HttpServlet {
 	            HttpServletResponse response) throws ServletException, IOException {
 		 setNomeAluno(request.getSession().getAttribute("loginUsuario").toString());
 		 setNomeRato(request.getSession().getAttribute("ratoAvatar").toString());
-		 setNomeExperimento(request.getSession().getAttribute("nomeExperimento").toString()); 
+		 setNomeExperimento(request.getParameter("resultados")); 
 		 popularResultado();
 		 criargrafico();		 
 		 RequestDispatcher dispatcher = request.getRequestDispatcher("Resultados.jsp");  
@@ -44,13 +44,14 @@ public class Grafico extends HttpServlet {
 	 }
 	
 	protected void popularResultado () {
-		resultado = ResultadoDAO.recuperaResultado(nomeAluno, nomeRato, nomeExperimento);
+		resultado = ResultadoDAO.recuperaResultado(getNomeAluno(), getNomeRato(), getNomeExperimento());
 	}
 		
 	  private CategoryDataset criarDataset() {
 	       
 	        
 	        //linhas
+		  	String series0 = "Reforços";
 	        String series1 = "Barra de Pressão";
 	        String series2 = "Bebedouro";
 	        String series3 = "Componentes gerais";
@@ -85,6 +86,8 @@ public class Grafico extends HttpServlet {
 	        //criando o datasheet
 	        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
+	        dataset.addValue(resultado.getReforcos(), series0, "Reforços");
+	        
 	        dataset.addValue(resultado.getUmUm(), series1, umUm);
 	        dataset.addValue(resultado.getUmDois(), series1, umDois);
 	        dataset.addValue(resultado.getUmTres(), series1, umTres);
@@ -111,6 +114,7 @@ public class Grafico extends HttpServlet {
 	        dataset.addValue(resultado.getQuatroQuatro(), series4, quatroQuatro);
 	        dataset.addValue(resultado.getQuatroCinco(), series4, quatroCinco);
 	        
+	    
 	        
 	        return dataset;
 	        
@@ -121,13 +125,13 @@ public class Grafico extends HttpServlet {
 						 
 			 CategoryDataset dataset = criarDataset();
 			 JFreeChart chart = ChartFactory.createBarChart(
-			  "Resultados do Rato Avatar", "", "Valores", dataset, 
+			  "Resultados do Rato Avatar"+nomeRato, "", "Frequência", dataset, 
 			   PlotOrientation.VERTICAL,
 			  true, false, false);
 
 
 			 final CategoryPlot plot = chart.getCategoryPlot();
-			plot.setForegroundAlpha(0.5f);
+			plot.setForegroundAlpha(1f);
 			 
 			 
 			 chart.setBackgroundPaint(new Color(255, 255, 255));
@@ -136,9 +140,9 @@ public class Grafico extends HttpServlet {
 			  final ChartRenderingInfo info = new ChartRenderingInfo
 			   (new StandardEntityCollection());
 
-			 final File file1 = new File("../RatoAvatar/WebContent/charts/teste2.png");
+			 final File file1 = new File("../WorkSpace/RatoAvatar/WebContent/charts/chart"+nomeAluno+nomeRato+nomeExperimento+".png");
 
-			 ChartUtilities.saveChartAsPNG(file1, chart, 1400, 600, info);
+			 ChartUtilities.saveChartAsPNG(file1, chart, 2600, 600, info);
 			  } catch (Exception e) {
 			  System.out.println(e);
 			  }

@@ -72,7 +72,8 @@ public class CaixaDeSkinner extends HttpServlet {
 		 experimento.setAgua(true);
 		 response.setContentType("text/plain");
 	        PrintWriter out = response.getWriter();
-	        out.println("Sistema de reforço ativado no bebedouro.");
+	        out.println("Sistema de reforço ativado no bebedouro. Rato Avatar bebeu água no bebedouro.");
+	        resultado.setReforcos(resultado.getReforcos()+1);
 	        out.flush();
 	        out.close();
 		}
@@ -96,8 +97,10 @@ public class CaixaDeSkinner extends HttpServlet {
 	public String action () { //ação a ser disparada pela camada de apres. (verificar later.
 		
 		if (verificaAgua()) {
-			return "bebeu água no bebedouro";
-		} else {
+			return interpretador.interpretar(experimento.getTipoRespostaReforcada(), qualInterpretar(experimento.getTipoRespostaReforcada()));
+		}else {
+		
+		
 		iterar(); //continua treino e/ou setar novos valores
 		
 		experimento.setUltimaTipoRespostaReforcada(experimento.getTipoRespostaReforcada()); //salva ultimo valor da ultima ação
@@ -109,7 +112,7 @@ public class CaixaDeSkinner extends HttpServlet {
 		
 		//
 	System.out.println(respostaFrase);
-		System.out.println(resultado.getUmDois());
+		
 		System.out.println(frequencia.getLimite1());
 		System.out.println(frequencia.getLimite2());
 		System.out.println(frequencia.getLimite3());
@@ -117,15 +120,15 @@ public class CaixaDeSkinner extends HttpServlet {
 		System.out.println("---------");
 		//
 		return respostaFrase; 
-		}
 		
+		}
 		
 	}
 	
 	public boolean verificaAgua () { //verificar depois na camada de apresenta pra imprimir "bebeu água no bebedouro" e etc
 		if (experimento.isAgua()) {
 			experimento.setSeAgua(1); //rato tem conhecimento do reforço
-			iterar();
+			iterar(); 
 			experimento.setAgua(false);
 			return true;
 		} else
@@ -158,7 +161,7 @@ public class CaixaDeSkinner extends HttpServlet {
 			qualLimiteUp();
 		} 
 		else {
-			qualLimiteDown();
+			//qualLimiteDown();
 		}
 
 	}
@@ -185,7 +188,7 @@ public class CaixaDeSkinner extends HttpServlet {
 	
 	
 	private void qualLimiteDown () {
-		switch (experimento.getTipoRespostaReforcada()) {
+		switch (experimento.getUltimaTipoRespostaReforcada()) {
 		case 1 : frequencia.remove1(); break;
 		case 2 : frequencia.remove2(); break;
 		case 3 : frequencia.remove3(); break;
@@ -194,7 +197,7 @@ public class CaixaDeSkinner extends HttpServlet {
 	}
 	
 	private void qualLimiteUp () {
-		switch (experimento.getTipoRespostaReforcada()) {
+		switch (experimento.getUltimaTipoRespostaReforcada()) {
 		case 1 : frequencia.add1(); break;
 		case 2 : frequencia.add2(); break;
 		case 3 : frequencia.add3(); break;

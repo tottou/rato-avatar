@@ -104,23 +104,25 @@ function validarNulo (form){
 			%>
 			<h2>Experimentos do Rato Avatar <% out.println(rato); %> </h2>
 
-			<form name="form1" method="get" action="/Grafico">
+			<form name="form1" method="get" action="Grafico">
 							<%
 					List<String> lista = Lab.resultadosRatos( session.getAttribute("loginUsuario").toString(), session.getAttribute("ratoAvatar").toString());
 										
 				
 					for (String nomeExp : lista) {						
 						
-						out.println("<input type='radio' name='ratos'  value='"+nomeExp+"'><b>"+nomeExp+"</b><br />");	
+						out.println("<input type='radio' name='resultados'  value='"+nomeExp+"'><b>"+nomeExp+"</b><br />");	
 						
 					}
 					if (lista.size()>0) {	
-					out.println("<br /><br /><input type='submit' name='Submit' value='Acessar'> <br/><br/>");
+					out.println("<br /><br /><input type='submit' name='Submit' value='Resultados'> <br/><br/>");
 					}
 					
 					
 					
 					%>
+					<br/><br/><br/><br/><br/><br/>
+					
 					</form>
 				
 					Para iniciar um novo experimento, forneça o Título e clique no botão para acessar a Caixa de Skinner. <br/>
