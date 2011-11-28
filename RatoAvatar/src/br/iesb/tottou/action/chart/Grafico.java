@@ -74,12 +74,12 @@ public class Grafico extends HttpServlet {
 	    	  String tresDois = "paredes";
 	    	  String tresTres = "auto-falantes";
 	    	  String tresQuatro = "sinal luminoso";
-	    	  String tresCinco = "farejou partes diversas rapidamente";
+	    	  String tresCinco = "farejou partes diversas ";
 	    	
-	    	  String quatroUm = "esfregou as patas dianteiras no focinho";
+	    	  String quatroUm = "esfregou as patas ";
 	    	  String quatroDois = "lambeu as patas";
 	    	  String quatroTres = "girou em torno de si mesmo";
-	    	  String quatroQuatro = "girou duas vezes em torno de si mesmo";
+	    	  String quatroQuatro = "girou duas vezes ";
 	    	  String quatroCinco = "ficou imóvel";
 	       
 
