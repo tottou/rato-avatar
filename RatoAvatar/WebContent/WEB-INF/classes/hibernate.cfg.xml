@@ -12,6 +12,8 @@
     	<property name="connection.pool_size">1</property>
     	<property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
-        <mapping class="br.tottou.model.Perfil"/>         
+        <mapping class="br.tottou.model.Perfil"/> 
+        <mapping class="br.tottou.model.Empresa"/>
+        <mapping class="br.tottou.model.Aluno"/>        
     </session-factory>
 </hibernate-configuration>
