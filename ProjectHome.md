@@ -1,0 +1,1 @@
+Projeto de uma simulação computacional de uma caixa de condicionamento operante.
