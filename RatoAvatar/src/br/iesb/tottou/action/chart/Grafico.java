@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartRenderingInfo;
 import org.jfree.chart.ChartUtilities;
@@ -30,6 +29,7 @@ public class Grafico extends HttpServlet {
 	 private String nomeRato;
 	 private String nomeExperimento;
 	 public Resultado resultado = new Resultado();
+	 private String caminho;
 
 	
 	protected void doGet(HttpServletRequest request,
@@ -37,6 +37,7 @@ public class Grafico extends HttpServlet {
 		 setNomeAluno(request.getSession().getAttribute("loginUsuario").toString());
 		 setNomeRato(request.getSession().getAttribute("ratoAvatar").toString());
 		 setNomeExperimento(request.getParameter("resultados")); 
+		 caminho =request.getSession().getServletContext().getRealPath("")+ File.separator;
 		 popularResultado();
 		 criargrafico();		 
 		 RequestDispatcher dispatcher = request.getRequestDispatcher("Resultados.jsp");  
@@ -140,7 +141,7 @@ public class Grafico extends HttpServlet {
 			  final ChartRenderingInfo info = new ChartRenderingInfo
 			   (new StandardEntityCollection());
 
-			 final File file1 = new File("../WorkSpace/RatoAvatar/WebContent/charts/chart"+nomeAluno+nomeRato+nomeExperimento+".png");
+			 final File file1 = new File(caminho+"/charts/chart"+nomeAluno+nomeRato+nomeExperimento+".png");
 
 			 ChartUtilities.saveChartAsPNG(file1, chart, 2600, 600, info);
 			  } catch (Exception e) {
